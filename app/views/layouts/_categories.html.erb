@@ -1,19 +1,44 @@
-<h1>Categories</h1>
-<br>
 
-<table class="catalog">
     
-    <% @categories.each do  |category| %>
-    <tr>
-        <td> 
-        <div class="category">
-            <h2><%= category.name %></h2>
-            
-            <p><%= image_tag category.image_url, :style => "height:100px" %></p>
-            <p><%= category.description %></p>
-        </div>
-        </td>
-        
-    </tr>
-    <% end %>
-</table>
+	    
+	        
+	        <div class ="col-sm-8">
+	            <div class="container-fluid text-center">
+		<container>
+		    <h2>Categories</h2>
+		    <br>
+	    </container>
+	            <div class="container-fluid">
+	               
+	         
+			
+				    <div class="row">
+				        
+				   
+                <% @categories.each do  |category| %>
+                   
+                    <div class ="col-sm-4 center table-bordered">
+                    <tr>
+                        <td> 
+                        
+                            
+                            <h2><a href="/category/<%= category.name %>"><%= category.name %></a></h2>
+                            <p><%= image_tag category.image_url, :style => "height:100px" %></p>
+                            <p><%= category.description %></p>
+                        
+                        </td>
+                    
+                    </tr>
+                    </div>
+               
+                
+                <% end %>
+                </div>
+           
+            </div>
+	            
+	        </div>
+	    </div>
+	           
+	
+    

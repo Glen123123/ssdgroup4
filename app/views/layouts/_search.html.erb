@@ -1,0 +1,20 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4">
+            
+        </div>
+        <div class="col-sm-4">
+            
+            <%= form_tag("/search", :method=> "post") do %>
+            <%= label_tag("search for:") %>
+            <%= text_field_tag(:q) %>
+            <%= submit_tag("Search") %>
+            <% end %>
+            
+        </div>
+        
+        <div class="col-sm-4">
+            
+        </div>
+    </div>
+</div>

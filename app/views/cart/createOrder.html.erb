@@ -1,0 +1,89 @@
+<h2 class="text-center">You're nearly there</h2>
+
+
+<table class="center-table">
+  <thead>
+    <tr>
+      <th>Order Reference</th>
+    
+    </tr>
+  </thead>
+
+</table>
+
+<table class="center-table">
+  <thead>
+    <tr>
+      
+      <th>Book(s)</th>
+      
+    </tr>
+  </thead>
+
+<table class="table-bordered center-table">
+  <tbody>
+      <% @total = 0 %>
+      
+    <% @orderitems.each do |id,quantity| %>
+      <tr>
+        <% item = Orderitem.find_by_id(id) %>
+       
+        <td><%= item.title %></td>
+        <td><%= item.quantity %></td>
+       <td><%=number_to_currency(item.price, :unit => "€")%></td> 
+       <td><%= number_to_currency(item.quantity * item.price, :unit => "€") %></td>
+       </tr>
+       
+       <% totalPrice = (item.quantity * item.price)%>
+     
+     
+      <% @total += totalPrice %>
+      
+      </tr>
+    <% end %>
+ 
+  </tbody>
+  </table>
+  <br>
+  
+  <table class="table-bordered center-table">
+  <thead>
+    <tr>
+      <th class="text-center">Order Reference</th>
+    
+    </tr>
+  </thead>
+
+  <tbody>
+      <td>Total Before Tax: &euro; <%= @total %></td>
+       
+       <% tax = (@total / 100 * 21) %>
+       <% @overall = tax + @total%>
+       
+       
+      </tr>
+      
+      <tr>
+        
+       <td>Order Total: &euro; <%= @total %></td>
+       
+      </tr>
+      <tr>
+          <td>Tax &euro; <%= tax %>
+          </td>
+          </tr>
+      <tr>
+          <td>You Pay &euro; <%= @overall %>
+      </td>
+      </tr>
+      
+      <tr>
+          <td><h4 class="text-center">  <a href="/paid">Pay Now</a></h4></td>
+      </tr>
+
+   
+  </tbody>
+</table>
+  
+
+</table>

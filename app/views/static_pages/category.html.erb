@@ -1,0 +1,38 @@
+<h1>Category...</h1>
+<br>
+
+
+<% if @products.length == 0 %>
+
+<h2>There are no items in this category</h2>
+<% end %>
+
+<table class="catalog">
+  <% @products.each do |product| %>
+      <tr>
+        <td>
+          <div class="image">
+            <%= link_to (image_tag product.image_url, :style => "height:100px"), product %>
+          </div>
+          <div class="title">
+            <%= link_to product.title, product %>
+          </div>
+          <div class="description">
+            <%= product.description %>
+          </div>  
+          <div class="price">
+             <%= number_to_currency(product.price, :unit => "€") %>
+          </div>
+          <div class="links">
+            <% if user_signed_in? %>
+              <%= link_to 'Edit', edit_product_path(product) %>
+              <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%else%>
+            
+              <a href="/cart/<%= product.id %>">Add to Cart</a>
+            <%end%>  
+        </div>
+        </td>
+      </tr>
+    <% end %>
+</table>

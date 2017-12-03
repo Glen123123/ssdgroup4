@@ -9,26 +9,50 @@
   </head>
   <body>
     <%= render 'layouts/header'%>
-    <div id='container'>
-      <div id='content'>
+    <div>
+      <div>
         <p class="notice"><%= flash[:notice] %></p>
        <%= yield %>
       </div>
-      <div id='first-column'>
-        <div class="loginbox" style="height:200px">
+     
+      
+  
+      <% if user_signed_in? %>
+          <% if current_user.admin %>
+          <div class="container-fluid">
           
-          <% if user_signed_in? %>
-            <div>Signed in as  <%= current_user.username %> </div>
-          <% else %>
-            <%= link_to 'Register', new_user_registration_path %> or <%= link_to 'Sign in', new_user_session_path %>
+            <div class="row">
+              <div class="col-sm-3">
+                
+              </div>
+              <div class="col-sm-6 text-center">
+                <table class="table-bordered center-table">
+                  
+                    <tr><h4 class="text-danger">*Admin Zone*</h4></tr>
+                    <td><%= link_to 'New Category', new_category_path %></td>
+                    <td><%= link_to 'New Product', new_product_path %></td>
+                    <td><%= link_to "View Orders", orders_path  %></td>
+                    <td><%= link_to "View Products", products_path  %></td>
+                  </tr>
+                  
+                </table>
+                
+              </div>
+               <div class="col-sm-3">
+                
+              </div>
+            </div>
+            
+            
+             </div>
+          </div>
           <% end %>
-          
-        </div>
-      <div class="searchbox">
-        <h2 class="BoxHeaders"> Search catalog</h2>
-      </div>
-      </div>
+        
+        <% end %>
+     
     </div>
-    <%= render 'layouts/footer'%> 
+  
+   <%= render 'layouts/footer'%>
   </body>
 </html>
+ 

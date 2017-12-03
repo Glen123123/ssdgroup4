@@ -1,0 +1,42 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4">
+            
+        </div>
+        <div class="col-sm-4">
+            
+            <h2>Displaying matches for <%= @search_term %> </h2>
+            
+            <% if @products.length ==0 %>
+            <h3>No books matched that name</h3>
+            <%end %>
+            
+            <table class="table-bordered">
+                <% @products.each do |product| %>
+                <tr>
+                    <td>
+                        <div class="img-responsive">
+                            <%= link_to (image_tag product.image_url, :style=> "height:100px;"),product %>
+                           
+                        </div>
+                        <div class="img-responsive">
+                            <%= link_to product.title, product %>
+                        </div>
+                        <div class="">
+                            <%= product.description %>
+                        </div>
+                        <div class="">
+                            <%= number_to_currency(product.price, :unit => '$') %>
+                        </div>
+                        
+                        <a href="/cart/<%= product.id %>>Add to cart</a>"
+                    </td>
+                </tr>
+                <% end %>
+        </div>
+        
+        <div class="col-sm-4">
+            
+        </div>
+    </div>
+</div>

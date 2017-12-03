@@ -6,6 +6,14 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
   end
+  
+  def search
+    
+    @search_term = params[:q]
+    st = "%#{params[:q]}%"
+    @products = Product.where("title like ?", st)
+    
+  end
 
   # GET /products/1
   # GET /products/1.json

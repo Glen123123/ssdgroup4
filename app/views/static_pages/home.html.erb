@@ -1,45 +1,31 @@
-<!--<div class="center jumbotron">-->
+
 <% provide(:title, "Home") %>
-<!--<h1>Home page</h1>
-<p class="center" >Online Bookstore App</p>
-<br>
-<p class="center">
-  This is the home page for the
-  <a href="http://www.railstutorial.org/">Ruby on Rails Tutorial</a>
-  bookstore application.
-</p>
--->
-<h1>Welcome in our book shop!</h1>
-<br>
-<p>Please <%= link_to 'login',products_path %> or <%= link_to 'sign up',products_path %></p>
 
-<p> here should be an welcome image  : ) </p>
-<%= render 'layouts/categories' %>
+<div class="row">
+  <%= render 'layouts/categories' %>
 
-<h2>Catalog</h2>
-<br>
-<table class="catalog">
-  <% @products.each do |product| %>
-      <tr>
-        <td>
-          <div class="image">
-            <%= link_to (image_tag product.image_url, :style => "height:100px"), product %>
-          </div>
-          <div class="title">
-            <%= link_to product.author, product %>
-          </div>
-          <div class="title">
-            <%= link_to product.title, product %>
-          </div>
-          <div class="price">
-             <%= number_to_currency(product.price, :unit => "€") %>
-          </div>
-          <div class="links">
-          <%= link_to 'New Item', new_product_path %>
-          <%= link_to 'Edit', edit_product_path(product) %>
-          <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
-          </div>
-        </td>
-      </tr>
-    <% end %>
-</table>
+
+  
+ 
+			<div class ="col-sm-3 center">
+			  <h2 class="text-center">Deals Of The Week</h2>
+			  <table class="table-bordered center-table">
+        <% @products.limit(3).order(:price).each do |product| %>
+        <tr>
+            
+            <td class="img-responsive"><%= link_to (image_tag product.image_url, :style=> "height:100px;"),product %></td>
+            <td class="legend"><%= link_to product.title, product %></td>
+           
+            <td class="legend"><%= number_to_currency(product.price, :unit => '$') %></td>
+            <td class="legend"><a href="/cart/<%= product.id %>">Add to cart</a></td>
+        </tr>
+        <% end %>
+        <br>
+          </table>
+      </div>
+
+
+</div>
+</div>
+
+
